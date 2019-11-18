@@ -1,3 +1,3 @@
 export const baseURL =  process.env.NODE_ENV === 'development'
-    ? 'http://70.12.113.50:3000'
-    : 'https://binsansong.herokuapp.com/';
+    ? 'http://70.12.225.126:3000'
+    : 'https://jun-blog-back.herokuapp.com/';
