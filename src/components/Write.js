@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import TextaareaAutosize from 'react-textarea-autosize';
+import TextareaAutosize from 'react-textarea-autosize';
 import ReactMarkdown from 'react-markdown';
 import axios from 'axios';
 import { baseURL } from '../common/config';
@@ -10,6 +10,7 @@ export default function Write({ history }) {
   const [tags, setTags] = useState([]);
   const [title, setTitle] = useState('');
   const [contents, setContents] = useState('');
+
   const addTag = async () => {
     const res = await axios.get(`${baseURL}/api/tag/${tag}`);
     if (res.data.error) {
@@ -26,23 +27,27 @@ export default function Write({ history }) {
   const deleteTag = (i) => {
     const newTags = [...tags];
     newTags.splice(i, 1);
-    setTag(newTags);
+    setTags(newTags);
   };
+
   const submit = async () => {
     const { data } = await authAxios.post(`${baseURL}/api/post`, {
       title,
       contents,
-      tag: tags.map((t) => t._Id),
+      tags: tags.map((t) => t._id),
     });
     if (data.result) history.push('/');
-    else alert('글이 등록되지 않음, 관리자에게 문의 하세요');
+    else {
+      alert('글이 등록되지 않음ㅜㅜ, 관리자=너 에게 문의하세요');
+    }
   };
+
   return (
     <>
       <label>태그 추가</label>
       <input type="text" value={tag} onChange={(e) => setTag(e.target.value)} />
       <button type="button" className="btn btn-success" onClick={addTag}>
-        태그추가
+        태그 추가
       </button>
       <div>
         {tags.map(({ name }, i) => (
@@ -58,9 +63,13 @@ export default function Write({ history }) {
       <div className="write">
         <div className="write-vertical">
           <label>제목</label>
-          <input type="text" value={title} onChange={(e) => e.target.value} />
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
           <label>내용</label>
-          <TextaareaAutosize
+          <TextareaAutosize
             value={contents}
             onChange={(e) => setContents(e.target.value)}
           />
