@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Main from './Main';
 import TagList from './TagList';
-import { baseURL } from '../config';
+import { baseURL } from '../common/config';
 
 export default function Home() {
   const [posts, setPosts] = useState(null);

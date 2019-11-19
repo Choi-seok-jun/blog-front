@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
 import { Redirect } from 'react-router-dom';
-import { baseURL } from '../config';
+import { baseURL } from '../common/config';
 
 export default function Login({ setIsLoggedIn, setIsAdmin, history }) {
   const [loginState, setLoginState] = useState('init');
