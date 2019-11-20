@@ -31,14 +31,14 @@ export default function Write({ history }) {
   };
 
   const submit = async () => {
-    const { data } = await authAxios.post(`${baseURL}/api/post`, {
+    const { data } = await authAxios().post(`${baseURL}/api/post`, {
       title,
       contents,
       tags: tags.map((t) => t._id),
     });
     if (data.result) history.push('/');
     else {
-      alert('글이 등록되지 않음ㅜㅜ, 관리자=너 에게 문의하세요');
+      alert('글이 등록되지 않음 관리자에게 문의하세요');
     }
   };
 

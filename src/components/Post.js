@@ -8,7 +8,7 @@ export default function Post({ match }) {
   const getPost = async () => {
     const url = `${baseURL}/api/post/${match.params.id}`;
     const { data } = await axios.get(url);
-    setPost(data);
+    setPost(data.post);
   };
   useEffect(() => {
     getPost();
